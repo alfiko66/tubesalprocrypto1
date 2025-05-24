@@ -12,8 +12,8 @@ func main() {
 	for {
 		fmt.Print(`
 Simulasi Penambangan Crypto
-1. Lihat Daftar Crypto
-2. Tambah Crypto
+1. Tambah Crypto
+2. Lihat Crypto
 3. Tambang
 4. Laporan
 0. Keluar
@@ -22,6 +22,8 @@ Pilihan Anda: `)
 		switch utils.ScanNumber("") {
 		case 1:
 			handlers.AddCrypto()
+		case 2:
+			handlers.DisplayCryptos()
 		default:
 			fmt.Println("Pilihan tidak valid")
 		}

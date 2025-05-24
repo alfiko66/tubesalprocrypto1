@@ -25,3 +25,17 @@ func AddCrypto() {
 	database.DB.NCrypto++
 	fmt.Println("Crypto berhasil ditambahkan")
 }
+
+func DisplayCryptos() {
+	if database.DB.NCrypto == 0 {
+		fmt.Println("Tidak ada crypto yang tersedia.")
+		return
+	}
+
+	fmt.Println("\nCrypto yang tersedia:")
+	for i := 0; i < database.DB.NCrypto; i++ {
+		c := database.DB.Cryptos[i]
+		fmt.Printf("%d. %s (Difficulty: %.1f, Reward: %.4f)\n", 
+			c.ID, c.Name, c.Difficulty, c.Reward)
+	}
+}

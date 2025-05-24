@@ -1,5 +1,7 @@
 package models
 
+const NMAX = 1000
+
 type Crypto struct {
 	ID         int
 	Name       string
@@ -15,8 +17,10 @@ type Mining struct {
 }
 
 type Database struct {
-	Cryptos   []Crypto
-	Minings   []Mining
+	Cryptos      [NMAX]Crypto
+	Minings      [NMAX]Mining
+	NCrypto      int
+	NMining      int
 	LastCryptoID int
 	LastMiningID int
 }

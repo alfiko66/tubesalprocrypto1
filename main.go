@@ -4,28 +4,69 @@ import (
 	"alprocrypto/database"
 	"alprocrypto/handlers"
 	"alprocrypto/utils"
-	"fmt"
 )
+
 func main() {
 	database.InitDB()
 
 	for {
-		fmt.Print(`
-Simulasi Penambangan Crypto
-1. Tambah Crypto
-2. Lihat Crypto
-3. Tambang
-4. Laporan
-0. Keluar
-Pilihan Anda: `)
+		utils.DisplayMainMenu()
+		choice := utils.ScanNumber("Pilih menu: ")
 
-		switch utils.ScanNumber("") {
+		switch choice {
+		case 1:
+			showManageCryptoMenu()
+		case 2:
+			utils.DisplayCryptoList()
+		case 3:
+			handlers.EstimateMining()
+		case 4:
+			handlers.SearchCrypto()
+		case 5:
+			showSortMenu()
+		case 6:
+			utils.DisplayMiningList()
+		case 7:
+			println("Terima kasih telah menggunakan aplikasi.")
+			return
+		default:
+			println("Pilihan tidak valid.")
+		}
+	}
+}
+
+func showManageCryptoMenu() {
+	for {
+		utils.DisplayManageCryptoMenu()
+		choice := utils.ScanNumber("Pilih menu: ")
+		switch choice {
 		case 1:
 			handlers.AddCrypto()
 		case 2:
-			handlers.DisplayCryptos()
+			handlers.EditCrypto()
+		case 3:
+			handlers.DeleteCrypto()
+		case 4:
+			return
 		default:
-			fmt.Println("Pilihan tidak valid")
+			println("Pilihan tidak valid.")
+		}
+	}
+}
+
+func showSortMenu() {
+	for {
+		utils.DisplaySortMenu()
+		choice := utils.ScanNumber("Pilih menu: ")
+		switch choice {
+		case 1:
+			utils.SortByDifficulty()
+		case 2:
+			utils.SortByReward()
+		case 3:
+			return
+		default:
+			println("Pilihan tidak valid.")
 		}
 	}
 }
